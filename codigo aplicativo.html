@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADRIANA NAILS</title>
+    <style>
+        :root {
+            --rose-gold: #b88771;
+            --rose-soft: #ffb5a7;
+            --bg-claro: #fff8f6;
+            --grafite: #2d2d2d;
+            --cinza-claro: #f4f4f4;
+            --preto-luxo: #1a1a1a; /* Nova cor para o botão */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bodoni MT', 'Didot', 'Playfair Display', 'Georgia', serif;
+        }
+
+        body {
+            background-image: linear-gradient(rgba(255, 248, 246, 0.9), rgba(255, 248, 246, 0.9)), 
+                              url('https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--grafite);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        .app-container {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            width: 100%;
+            max-width: 380px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--grafite);
+        }
+
+        header p {
+            font-size: 12px;
+            color: var(--rose-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .secao {
+            margin-bottom: 14px;
+        }
+
+        .secao h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+            color: var(--grafite);
+            font-family: inherit;
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .card-servico {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.12);
+            padding: 14px 8px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .card-servico:hover {
+            border-color: var(--rose-gold);
+        }
+
+        .card-servico.selecionado {
+            background: var(--grafite) !important;
+            color: white !important;
+            border-color: var(--grafite) !important;
+        }
+
+        .horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .btn-horario {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.12);
+            color: var(--grafite);
+            padding: 10px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-horario:hover:not(.ocupado) {
+            border-color: var(--rose-gold);
+        }
+
+        .btn-horario.selecionado {
+            background: var(--rose-gold) !important;
+            border-color: var(--rose-gold) !important;
+            color: white !important;
+        }
+
+        .btn-horario.ocupado {
+            background: #ebebeb !important;
+            border-color: transparent !important;
+            color: #b5b5b5 !important;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            font-weight: 400;
+        }
+
+        /* Botão do WhatsApp Atualizado para Preto Luxo (Elegante e Moderno) */
+        .btn-confirmar {
+            width: 100%;
+            background: var(--preto-luxo);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            font-family: inherit;
+        }
+
+        .btn-confirmar:hover {
+            background: #333333;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transform: translateY(-1px);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 10px;
+            color: #999;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Adriana Nails</h1>
+            <p>Manicure & Podologia</p>
+        </header>
+
+        <div class="secao">
+            <h3>Seu Nome</h3>
+            <input type="text" id="nome-cliente" placeholder="Digite seu nome completo">
+        </div>
+
+        <div class="secao">
+            <h3>Escolha o Serviço</h3>
+            <div class="servicos-grid">
+                <div class="card-servico" onclick="clicouServico(this, 'Podologia')">Podologia</div>
+                <div class="card-servico" onclick="clicouServico(this, 'Pé e Mão')">Pé e Mão</div>
+                <div class="card-servico" onclick="clicouServico(this, 'Apenas Mão')">Apenas Mão</div>
+                <div class="card-servico" onclick="clicouServico(this, 'Apenas Pé')">Apenas Pé</div>
+            </div>
+        </div>
+
+        <div class="secao">
+            <h3>Selecione o Dia</h3>
+            <input type="date" id="data-agendamento">
+        </div>
+
+        <div class="secao">
+            <h3>Horários Disponíveis</h3>
+            <div class="horarios-grid" id="container-horarios">
+                </div>
+        </div>
+
+        <button class="btn-confirmar" onclick="enviarWhatsApp()">
+            Solicitar Horário no WhatsApp
+        </button>
+
+        <footer>@drika.cl</footer>
+    </div>
+
+    <script>
+        // ATENÇÃO: COLOQUE SEU NÚMERO ABAIXO (Mude apenas os números, mantenha as aspas)
+        const SEU_NUMERO_WHATSAPP = "71983828373"; 
+
+        let servicoEscolhido = "";
+        let horarioEscolhido = "";
+
+        const listaHorarios = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
+        const horariosOcupados = ["10:00", "15:00"]; 
+
+        const hoje = new Date().toISOString().split('T')[0];
+        document.getElementById('data-agendamento').min = hoje;
+        document.getElementById('data-agendamento').value = hoje;
+
+        function clicouServico(elemento, nomeServico) {
+            const itens = document.querySelectorAll('.card-servico');
+            itens.forEach(item => item.classList.remove('selecionado'));
+            
+            elemento.classList.add('selecionado');
+            servicoEscolhido = nomeServico;
+        }
+
+        function carregarHorarios() {
+            const container = document.getElementById('container-horarios');
+            container.innerHTML = ""; 
+
+            listaHorarios.forEach(hora => {
+                const elementoBotao = document.createElement('div');
+                elementoBotao.className = 'btn-horario';
+                elementoBotao.innerText = hora;
+
+                if (horariosOcupados.includes(hora)) {
+                    elementoBotao.classList.add('ocupado');
+                } else {
+                    elementoBotao.onclick = function() {
+                        const todosBotoes = document.querySelectorAll('.btn-horario');
+                        todosBotoes.forEach(b => b.classList.remove('selecionado'));
+                        
+                        elementoBotao.classList.add('selecionado');
+                        horarioEscolhido = hora;
+                    };
+                }
+                container.appendChild(elementoBotao);
+            });
+        }
+
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome-cliente').value.trim();
+            const dataOriginal = document.getElementById('data-agendamento').value;
+
+            if (!nome) { alert("Por favor, escreva o seu nome."); return; }
+            if (!servicoEscolhido) { alert("Por favor, clique em um dos serviços."); return; }
+            if (!dataOriginal) { alert("Por favor, selecione uma data."); return; }
+            if (!horarioEscolhido) { alert("Por favor, escolha um horário disponível."); return; }
+
+            const partesData = dataOriginal.split('-');
+            const dataBr = `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
+
+            const mensagemFinal = `Olá, Adriana! Gostaria de agendar um horário:%0A%0A` +
+                                 `👤 *Nome:* ${encodeURIComponent(nome)}%0A` +
+                                 `💅 *Serviço:* ${encodeURIComponent(servicoEscolhido)}%0A` +
+                                 `📅 *Data:* ${dataBr}%0A` +
+                                 `⏰ *Horário:* ${horarioEscolhido}`;
+
+            const urlCompleta = `https://api.whatsapp.com/send?phone=${SEU_NUMERO_WHATSAPP}&text=${mensagemFinal}`;
+            
+            window.open(urlCompleta, '_blank');
+        }
+
+        window.onload = function() {
+            carregarHorarios();
+        };
+
+        document.getElementById('data-agendamento').addEventListener('change', function() {
+            carregarHorarios();
+            horarioEscolhido = ""; 
+        });
+    </script>
+</body>
+</html>
